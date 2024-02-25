@@ -43,14 +43,14 @@ def generate_transcript_from_audio(audio_file, full_timings_path, model, sub_for
     result.to_srt_vtt(full_timings_path, word_level=False)
 
 def align_text(model, working_folder, script_file, final):
-    file_content = Path(script_file).read_text()
+    file_content = Path(script_file).read_text(encoding='UTF-8')
     audio_file = prep_audio(working_folder)
     result = model.align(audio_file, file_content,
-                         language="ja",
+                         language="zh",
                          original_split=True,
                          prepend_punctuations='''「"'“¿([{-)''',
                          append_punctuations='''.。,，!！?？:：”)]}、)」''',
-                        #  use_word_position=True,
+                         use_word_position=True,
                         #  max_word_dur=60.0,
                         #  word_dur_factor=40.0,
                         # vad=True,
@@ -179,7 +179,8 @@ def prep_audio(working_folder, use_cache=False):
 def remove_files(files):
     for file in files:
         try:
-            os.remove(file)
+            # os.remove(file)
+            pass
         except OSError as e:
             print("Error: %s - %s." % (e.filename, e.strerror))
 
