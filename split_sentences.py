@@ -1,6 +1,7 @@
 import pysbd
 # import sys
 from tqdm import tqdm
+import re
 
 # inputs = [sys.argv[1]]
 def split_sentences(inputs):
@@ -37,6 +38,13 @@ def split_sentences(inputs):
                         continue
                 fixed.append(line)
             lines = fixed
+            
+            # Split on direct speech
+            fixed = []
+            for i, line in enumerate(lines):
+                split_lines = [ l for l in re.split(r'(?<=[:：])',line) if l != '' ]
+                fixed.extend( split_lines )
+            lines = fixed 
 
             for line in lines:
                 if line != '':
