@@ -1,0 +1,5 @@
+fuzzywuzzy
+pysbd
+python-Levenshtein
+git+https://github.com/jianfch/stable-ts.git
+natsort
