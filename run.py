@@ -23,7 +23,7 @@ def get_model(model_type='large-v2'):
 
 def generate_transcript_from_audio(audio_file, full_timings_path, model, sub_format='ass', **kwargs):
     default_args = {
-        'language': 'ja',
+        'language': 'zh',
         'suppress_silence': True,
         # 'vad': True,
         'regroup': True,

@@ -8,7 +8,7 @@ def split_sentences(inputs):
         with open(file_name, 'r', encoding='UTF-8') as file:
             ilines = file.readlines()
 
-        seg = pysbd.Segmenter(language="en", clean=False)
+        seg = pysbd.Segmenter(language="zh", clean=False)
         with open(file_name + '.split.txt', 'w', encoding='UTF-8') as fo:
             lines = []
             print("Splitting script into sentences")
@@ -21,7 +21,7 @@ def split_sentences(inputs):
             # Fix end of quotes
             fixed = []
             for i, line in enumerate(lines):
-                if i > 0 and len(line) > 0 and line[0] in ['」', '’']:
+                if i > 0 and len(line) > 0 and line[0] in ['」', '’','”']:
                     fixed[-1] += line[0]
                     line = line[1:]
                 if len(line):
@@ -32,7 +32,7 @@ def split_sentences(inputs):
             fixed = []
             for i, line in enumerate(lines):
                 if len(fixed) > 0:
-                    if (fixed[-1][0] in ['」', '’']) and len(fixed[-1]+line) <= 1:
+                    if (fixed[-1][0] in ['」', '’','”']) and len(fixed[-1]+line) <= 1:
                         fixed[-1] += line
                         continue
                 fixed.append(line)
