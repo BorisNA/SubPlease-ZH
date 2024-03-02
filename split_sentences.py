@@ -46,6 +46,13 @@ def split_sentences(inputs):
                 fixed.extend( split_lines )
             lines = fixed 
 
+            # Split on commas speech (Ugh)
+            fixed = []
+            for i, line in enumerate(lines):
+                split_lines = [ l for l in re.split(r'(?<=[，,])',line) if l != '' ]
+                fixed.extend( split_lines )
+            lines = fixed
+
             for line in lines:
                 if line != '':
                     fo.write(line + '\n')
